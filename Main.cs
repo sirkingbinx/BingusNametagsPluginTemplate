@@ -13,15 +13,20 @@ namespace BingusNametagsPluginTemplate;
  */
 
 // Arguments (in order):
-//      name (string): Name of the nametag, usually the name of your mod
+//      name (string): Name of the plugin, usually the name of your mod
 //      author (string): Your name. Hi!
 //      description (string): A tiny description of what the nametag is. eg. "Adds a speed counter in m/s"
-//      offset (float): How far your nametag is from the default nametag. As a scale reference, each nametag is about 0.5 units large vertically
 //      unsupported nametags (string[]): If you know the name of a nametag that interferes with your nametag, add it's name to this list to have it automatically disabled.
-[BingusNametagsPlugin("My First Nametag", "John Doe", "Write a short description of your plugin. (actually short)", 0.5f)]
+[BingusNametagsPlugin("My First Nametag", "John Doe", "Write a short description of your plugin. (actually short)")]
 public class Main : IBaseNametag
 {
-    public void UpdateNametag(PlayerNametag nametag)
+    // This attribute defines what the actual nametag is. You can add multiple nametags to your plugin
+    // by adding this attribute above methods and changing up the arguments.
+    // Arguments (in order):
+    //      name (string): The name of this nametag (eg. "speed counter" or "fps counter")
+    //      offset (float): The amount of space inbetween the default nametag offset and your nametag. The default nametag's offset is 0f.
+    [BingusNametagsNametag("My First Nametag", 0.5f)]
+    public static void Update(PlayerNametag nametag)
     {
         // The owner of the nametag is nametag.Owner. Here's some shortcuts I made for you
         var ownerRig = nametag.Owner;
